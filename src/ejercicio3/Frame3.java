@@ -5,6 +5,8 @@
  */
 package ejercicio3;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author pared
@@ -37,6 +39,8 @@ public class Frame3 extends javax.swing.JFrame {
         txtMontoFinal = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
+        txtCantInt = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -50,11 +54,17 @@ public class Frame3 extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel2.setText("Monto Inicial de Ahorrador:");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, -1, -1));
+
+        txtMontoIni.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtMontoIniKeyTyped(evt);
+            }
+        });
         jPanel1.add(txtMontoIni, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 70, 100, -1));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel3.setText("Interes del Banco:");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 110, -1, -1));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 110, -1, 20));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel4.setText("1.5%");
@@ -62,19 +72,115 @@ public class Frame3 extends javax.swing.JFrame {
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel5.setText("Monto Final de Ahorrador:");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 160, -1, -1));
-        jPanel1.add(txtMontoFinal, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 160, 100, -1));
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 190, -1, -1));
+
+        txtMontoFinal.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtMontoFinalKeyTyped(evt);
+            }
+        });
+        jPanel1.add(txtMontoFinal, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 190, 100, -1));
 
         jButton1.setText("Ejecutar");
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 210, -1, -1));
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 240, -1, -1));
 
         jButton2.setText("Borrar");
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 210, -1, -1));
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 240, -1, -1));
+
+        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel6.setText("Cantidad de Interes:");
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 150, -1, -1));
+
+        txtCantInt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCantIntActionPerformed(evt);
+            }
+        });
+        txtCantInt.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtCantIntKeyTyped(evt);
+            }
+        });
+        jPanel1.add(txtCantInt, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 150, 100, -1));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 540, 390));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        double monto, operacion, interes=1.5, montototal;
+        String op,inter;
+        if (txtMontoIni.getText().trim().isEmpty())
+        {
+            JOptionPane.showMessageDialog(this, "Ingrese Monto del Usuario", "Error", JOptionPane.ERROR_MESSAGE);
+            txtMontoIni.requestFocusInWindow();
+        }
+        else 
+        {
+        monto= Double.parseDouble(txtMontoIni.getText());
+        operacion= (monto*interes)/100;
+        montototal= operacion+monto;
+        
+        inter= String.valueOf(operacion);
+        op= String.valueOf(montototal);
+        txtMontoFinal.setText(op);
+        txtCantInt.setText(inter);
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void txtCantIntActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCantIntActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_txtCantIntActionPerformed
+
+    private void txtCantIntKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCantIntKeyTyped
+        // TODO add your handling code here:
+        char c=evt.getKeyChar(); 
+          if(!Character.isDigit(c)) 
+          { 
+              getToolkit().beep(); 
+              evt.consume();      
+          }
+         
+          if(!Character.isLetter(c)) 
+          { 
+              getToolkit().beep(); 
+              evt.consume(); 
+          }
+    }//GEN-LAST:event_txtCantIntKeyTyped
+
+    private void txtMontoFinalKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtMontoFinalKeyTyped
+        // TODO add your handling code here:
+        char c=evt.getKeyChar(); 
+          if(!Character.isDigit(c)) 
+          { 
+              getToolkit().beep(); 
+              evt.consume();      
+          }
+         
+          if(!Character.isLetter(c)) 
+          { 
+              getToolkit().beep(); 
+              evt.consume(); 
+          }
+    }//GEN-LAST:event_txtMontoFinalKeyTyped
+
+    private void txtMontoIniKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtMontoIniKeyTyped
+        // TODO add your handling code here:
+        char c=evt.getKeyChar(); 
+          if(!Character.isDigit(c)) 
+          { 
+              getToolkit().beep(); 
+              evt.consume();      
+          }
+    }//GEN-LAST:event_txtMontoIniKeyTyped
 
     /**
      * @param args the command line arguments
@@ -119,7 +225,9 @@ public class Frame3 extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JTextField txtCantInt;
     private javax.swing.JTextField txtMontoFinal;
     private javax.swing.JTextField txtMontoIni;
     // End of variables declaration//GEN-END:variables
