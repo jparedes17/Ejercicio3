@@ -5,6 +5,7 @@
  */
 package ejercicio3;
 
+import java.math.BigDecimal;
 import javax.swing.JOptionPane;
 
 /**
@@ -120,7 +121,8 @@ public class Frame3 extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        double monto, operacion, interes=1.5, montototal;
+        double monto, operacion, montototal;
+        double interes=1.5;
         String op,inter;
         if (txtMontoIni.getText().trim().isEmpty())
         {
@@ -134,7 +136,7 @@ public class Frame3 extends javax.swing.JFrame {
         montototal= operacion+monto;
         
         inter= String.valueOf(operacion);
-        op= String.valueOf(montototal);
+        op= String.valueOf(new BigDecimal(montototal));
         txtMontoFinal.setText(op);
         txtCantInt.setText(inter);
         }
